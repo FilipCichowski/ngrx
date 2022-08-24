@@ -1,0 +1,4 @@
+<button mat-raised-button *ngFor="let category of categories | keyvalue" (click)="onFilterSelected(category.key)" [color]='filters.includes(category.key) ? "warn" : "primary"'>
+      {{ category.key }}
+</button>
+
