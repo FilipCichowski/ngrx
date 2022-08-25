@@ -23,6 +23,8 @@ import { EffectsModule } from '@ngrx/effects';
 import {cartEffects} from "./states/cart/cart.effects";
 import { DialogComponent } from './components/dialog/dialog.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CartViewComponent } from './components/cart-view/cart-view.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
     HeaderComponent,
     ProductSelectorComponent,
     DialogComponent,
+    CartViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
     MatIconModule,
     MatCardModule,
     EffectsModule.forRoot([cartEffects]),
-    MatSnackBarModule
+    MatSnackBarModule,
+    FlexLayoutModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}}
