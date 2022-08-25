@@ -17,10 +17,10 @@ export const cartInitialState: Cart = {
 
 export const cartReducer = createReducer(
   cartInitialState,
-  on(cartActions.addProduct, (state: Cart, { product}) => ({
+  on(cartActions.addProduct, (state: Cart, { product, amount}) => ({
     ...state,
     inCart:state.inCart+1,
-    products: [...state.products, product]
+    products: [...state.products, ...Array(amount).fill(product)]
   })),
   on(cartActions.deleteProduct, (state: Cart, { product}) => ({
   ...state,

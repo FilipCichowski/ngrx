@@ -15,15 +15,19 @@ import {addProduct, deleteProduct} from '../../states/cart/cart.actions';
 export class ProductCardComponent {
   @Input() item!: Product;
 
+  orderAmount: number = 0;
+
   constructor(private store: Store<{ product: Product[] }>) {}
 
   onPlus(productId: number) {
-    this.store.dispatch(productActions.decrementProductInStock({ productId }));
-    this.store.dispatch(addProduct({ product: this.item}));
+    this.orderAmount++;
   }
 
   onMinus(productId: number) {
-    this.store.dispatch(productActions.incrementProductInStock({ productId }));
-    this.store.dispatch(deleteProduct({ product: this.item}));
+    this.orderAmount--;
+  }
+
+  onAddOrders() {
+    this.store.dispatch(addProduct({ product: this.item, amount: this.orderAmount}));
   }
 }

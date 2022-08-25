@@ -19,6 +19,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
 import {MatCardModule} from "@angular/material/card";
+import { EffectsModule } from '@ngrx/effects';
+import {cartEffects} from "./states/cart/cart.effects";
+import { DialogComponent } from './components/dialog/dialog.component';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -28,6 +32,7 @@ import {MatCardModule} from "@angular/material/card";
     CartComponent,
     HeaderComponent,
     ProductSelectorComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +46,12 @@ import {MatCardModule} from "@angular/material/card";
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    EffectsModule.forRoot([cartEffects]),
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
