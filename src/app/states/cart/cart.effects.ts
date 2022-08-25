@@ -3,7 +3,6 @@ import {Injectable} from "@angular/core";
 import {addProduct, deleteProduct} from "./cart.actions";
 import {flatMap, map, switchMap, tap} from "rxjs";
 import {ToastServiceService} from "../../services/toast-service.service";
-import {DialogComponent} from "../../components/dialog/dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable()

@@ -1,1 +1,3 @@
-<p>W koszyku: {{this.items$ | async}}</p>
+<p>W koszyku: {{this.itemsLength$ | async}}</p>
+<p>Cena za całość: {{this.totalPrice$ | async}}</p>
+<app-category-items category="SNAILS" *ngFor="let category of categories" [category]="category"></app-category-items>

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Cart } from '../../states/cart/cart.reducer';
 import * as cartActions from '../../states/cart/cart.actions';
+import {Product} from "../../utilities/Product";
 //import * as cartSelectors from 'src/app/states/cart/cart.selectors';
 
 @Component({
@@ -12,9 +12,9 @@ import * as cartActions from '../../states/cart/cart.actions';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  cart$!: Observable<Cart>;
+  cart$!: Observable<Product[]>;
 
-  constructor(private store: Store<{ cart: Cart }>) {
+  constructor(private store: Store<{ cart: Product[] }>) {
     this.cart$ = this.store.select('cart');
   }
 }

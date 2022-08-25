@@ -21,10 +21,12 @@ import { ProductSelectorComponent } from './components/product-selector/product-
 import {MatCardModule} from "@angular/material/card";
 import { EffectsModule } from '@ngrx/effects';
 import {cartEffects} from "./states/cart/cart.effects";
-import { DialogComponent } from './components/dialog/dialog.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CartViewComponent } from './components/cart-view/cart-view.component';
+import { CategoryItemsComponent } from './components/category-items/category-items.component';
+import { CategoryItemsCardComponent } from './components/category-items-card/category-items-card.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -34,13 +36,17 @@ import { CartViewComponent } from './components/cart-view/cart-view.component';
     CartComponent,
     HeaderComponent,
     ProductSelectorComponent,
-    DialogComponent,
     CartViewComponent,
+    CategoryItemsComponent,
+    CategoryItemsCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({product: productReducer, cart: cartReducer}, {}),
+    // StoreModule.forRoot({product: productReducer, cart: cartReducer}, {}),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('product', productReducer),
+    StoreModule.forFeature('cart', cartReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
@@ -51,7 +57,8 @@ import { CartViewComponent } from './components/cart-view/cart-view.component';
     MatCardModule,
     EffectsModule.forRoot([cartEffects]),
     MatSnackBarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSidenavModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}}

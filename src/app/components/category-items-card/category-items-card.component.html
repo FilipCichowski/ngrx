@@ -1,0 +1,12 @@
+<div class="card-wrapper">
+  <img [src]="item.imgUrl">
+  <div class="right-wrapper">
+    {{item.name}}
+    <div class="amount-wrapper">
+      <button mat-raised-button (click)="onMinus()" color="primary">-</button>
+      <p class="amt">{{numberOfItems$ | async}}</p>
+      <button mat-raised-button (click)="onPlus()" [disabled]="(numberOfItems$ | async) === item.inStock" color="warn">+</button>
+    </div>
+  </div>
+</div>
+

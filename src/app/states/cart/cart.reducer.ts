@@ -15,16 +15,18 @@ export const cartInitialState: Cart = {
   toPay: 0,
 };
 
+// export const cartInitialState: Product[] = []
+
 export const cartReducer = createReducer(
   cartInitialState,
   on(cartActions.addProduct, (state: Cart, { product, amount}) => ({
     ...state,
-    inCart:state.inCart+1,
+    // ...state.concat(...Array(amount).fill(product))
     products: [...state.products, ...Array(amount).fill(product)]
   })),
   on(cartActions.deleteProduct, (state: Cart, { product}) => ({
   ...state,
-  inCart:state.inCart-1,
   products: [...state.products.filter((v, i, a) => i !== a.findIndex(i => i.id === product.id))]
+  //   ...state
 }))
 );
