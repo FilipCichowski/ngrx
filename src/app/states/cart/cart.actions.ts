@@ -3,10 +3,10 @@ import { Product } from '../../utilities/Product';
 
 export const addProduct = createAction(
   '[Cart Component] Add Product',
-  props<{ productId: number, amount: number }>()
+  props<{ product: Product}>()
 );
 
 export const deleteProduct = createAction(
   '[Cart Component] Delete Products ',
-  props<{ productId: number }>()
+  props<{ product: Product }>()
 );

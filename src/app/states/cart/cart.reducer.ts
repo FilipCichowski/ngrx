@@ -4,7 +4,7 @@ import {cartProduct, Product} from '../../utilities/Product';
 import {possibleProducts} from "../../utilities/possibleProducts";
 
 export interface Cart {
-  products: cartProduct[];
+  products: Product[];
   inCart: number;
   toPay: number;
 }
@@ -17,9 +17,14 @@ export const cartInitialState: Cart = {
 
 export const cartReducer = createReducer(
   cartInitialState,
-  on(cartActions.addProduct, (state: Cart, { productId, amount }) => ({
+  on(cartActions.addProduct, (state: Cart, { product}) => ({
     ...state,
     inCart:state.inCart+1,
-    products: []
-  }))
+    products: [...state.products, product]
+  })),
+  on(cartActions.deleteProduct, (state: Cart, { product}) => ({
+  ...state,
+  inCart:state.inCart-1,
+  products: [...state.products.filter((v, i, a) => i !== a.findIndex(i => i.id === product.id))]
+}))
 );

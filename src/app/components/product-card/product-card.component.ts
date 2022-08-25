@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../utilities/Product';
 import * as productActions from '../../states/product/product.actions';
 import * as productSelectors from '../../states/product/product.selectors';
-import { addProduct } from '../../states/cart/cart.actions';
+import {addProduct, deleteProduct} from '../../states/cart/cart.actions';
 
 @Component({
   selector: 'app-product-card',
@@ -19,10 +19,11 @@ export class ProductCardComponent {
 
   onPlus(productId: number) {
     this.store.dispatch(productActions.decrementProductInStock({ productId }));
-    this.store.dispatch(addProduct({ productId, amount: 1 }));
+    this.store.dispatch(addProduct({ product: this.item}));
   }
 
   onMinus(productId: number) {
     this.store.dispatch(productActions.incrementProductInStock({ productId }));
+    this.store.dispatch(deleteProduct({ product: this.item}));
   }
 }
