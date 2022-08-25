@@ -8,17 +8,17 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable()
 export class cartEffects {
-
-
-  constructor(private actions$: Actions, private toastService: ToastServiceService, public snackBar: MatSnackBar) {
-    const add = this.actions$.pipe(
+  addEffect$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(addProduct),
       tap(action => {
           console.log(action.product);
           this.snackBar.open(`Dodano ${action.amount} produkt(y/ów) do koszyka`);
         }
       )
-    )
-    add.subscribe();
+    );
+  })
+
+  constructor(private actions$: Actions, private toastService: ToastServiceService, public snackBar: MatSnackBar) {
   }
 }
