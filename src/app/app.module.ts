@@ -27,6 +27,9 @@ import { CartViewComponent } from './components/cart-view/cart-view.component';
 import { CategoryItemsComponent } from './components/category-items/category-items.component';
 import { CategoryItemsCardComponent } from './components/category-items-card/category-items-card.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import {MatListModule} from "@angular/material/list";
+import {navReducer} from "./states/navigation/navigation.reducer";
 
 @NgModule({
   declarations: [
@@ -39,27 +42,30 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     CartViewComponent,
     CategoryItemsComponent,
     CategoryItemsCardComponent,
+    SidenavComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    // StoreModule.forRoot({product: productReducer, cart: cartReducer}, {}),
-    StoreModule.forRoot({}),
-    StoreModule.forFeature('product', productReducer),
-    StoreModule.forFeature('cart', cartReducer),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-    }),
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    EffectsModule.forRoot([cartEffects]),
-    MatSnackBarModule,
-    FlexLayoutModule,
-    MatSidenavModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        // StoreModule.forRoot({product: productReducer, cart: cartReducer}, {}),
+        StoreModule.forRoot({}),
+        StoreModule.forFeature('product', productReducer),
+        StoreModule.forFeature('cart', cartReducer),
+        StoreModule.forFeature('navigation', navReducer),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: environment.production,
+        }),
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
+        EffectsModule.forRoot([cartEffects]),
+        MatSnackBarModule,
+        FlexLayoutModule,
+        MatSidenavModule,
+        MatListModule
+    ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000}}
   ],

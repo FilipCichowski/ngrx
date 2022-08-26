@@ -1,13 +1,15 @@
 <app-product-selector (selectedFilter)="onFilterSelected($event)" [filters]="filters"></app-product-selector>
+<div class="content-wrapper">
+  <div
+    *ngIf="products$ | async as product"
+    class="cart-container"
+  >
+    <app-product-card
+      *ngFor="let item of product"
+      [item]="item"
+    ></app-product-card>
+  </div>
 
-<div
-  *ngIf="products$ | async as product"
-  class="cart-container"
->
-  <app-product-card
-    *ngFor="let item of product"
-    [item]="item"
-  ></app-product-card>
 </div>
 
 <!--<app-cart></app-cart>-->

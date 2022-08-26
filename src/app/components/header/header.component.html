@@ -1,16 +1,8 @@
 <div class="header-group">
   <img [src]="path" alt="text">
-  <button mat-icon-button aria-label="open cart sidebar">
+  <button mat-icon-button aria-label="open cart sidebar" (click)="onSidebarToggle()">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
 </div>
 
-
-<mat-sidenav-container>
-  <mat-sidenav opened mode="over" >
-  </mat-sidenav>
-  <mat-sidenav-content>
-    Dupa
-  </mat-sidenav-content>
-</mat-sidenav-container>

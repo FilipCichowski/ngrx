@@ -28,6 +28,6 @@ export class CartViewComponent implements OnInit {
       map(state => state.cart.products.reduce((acc: number, item: Product) => acc + item.price, 0))
     )
     //this.items$.subscribe((state:any) => console.log(state))
-    this.totalPrice$.subscribe((state:any) => console.log(state))
+    //this.totalPrice$.subscribe((state:any) => console.log(state))
   }
 }
