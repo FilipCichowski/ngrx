@@ -4,45 +4,47 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { StoreModule } from '@ngrx/store';
 import { productReducer } from './states/product/product.reducer';
 import { cartReducer } from './states/cart/cart.reducer';
-
-import { ShopComponent } from './components/shop/shop.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
-import { CartComponent } from './components/cart/cart.component';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { HeaderComponent } from './components/header/header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
-import {MatCardModule} from "@angular/material/card";
-import { EffectsModule } from '@ngrx/effects';
+import {navReducer} from "./states/navigation/navigation.reducer";
+import { StoreModule } from '@ngrx/store';
 import {cartEffects} from "./states/cart/cart.effects";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
+
+import { MatListModule } from "@angular/material/list";
+import { MatSidenavModule } from "@angular/material/sidenav";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCardModule} from "@angular/material/card";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+
+import { HeaderComponent } from './components/header/header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CartViewComponent } from './components/cart-view/cart-view.component';
 import { CategoryItemsComponent } from './components/category-items/category-items.component';
 import { CategoryItemsCardComponent } from './components/category-items-card/category-items-card.component';
-import {MatSidenavModule} from "@angular/material/sidenav";
-import { SidenavComponent } from './components/sidenav/sidenav.component';
-import {MatListModule} from "@angular/material/list";
-import {navReducer} from "./states/navigation/navigation.reducer";
+import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { TotalPriceCartItemsPipe } from './pipes/total-price-cart-items.pipe';
+import { ArrLengthPipe } from './pipes/arr-length.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShopComponent,
     ProductCardComponent,
-    CartComponent,
     HeaderComponent,
     ProductSelectorComponent,
     CartViewComponent,
     CategoryItemsComponent,
     CategoryItemsCardComponent,
     SidenavComponent,
+    TotalPriceCartItemsPipe,
+    ArrLengthPipe,
   ],
     imports: [
         BrowserModule,
@@ -56,13 +58,12 @@ import {navReducer} from "./states/navigation/navigation.reducer";
             maxAge: 25,
             logOnly: environment.production,
         }),
+        EffectsModule.forRoot([cartEffects]),
         BrowserAnimationsModule,
         MatButtonModule,
         MatIconModule,
         MatCardModule,
-        EffectsModule.forRoot([cartEffects]),
         MatSnackBarModule,
-        FlexLayoutModule,
         MatSidenavModule,
         MatListModule
     ],

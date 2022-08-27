@@ -10,9 +10,7 @@ import {Product} from "../../utilities/Product";
   styleUrls: ['./cart-view.component.css']
 })
 export class CartViewComponent implements OnInit {
-  items$!: any;
-  itemsLength$!: Observable<number>;
-  totalPrice$!: Observable<number>;
+  items$!: Observable<Product[]>;
   categories = Object.keys(ProductCategory);
 
   constructor(private store: Store<any>) { }
@@ -21,13 +19,5 @@ export class CartViewComponent implements OnInit {
     this.items$ = this.store.pipe(
       map(state => state.cart.products)
     )
-    this.itemsLength$ = this.store.pipe(
-      map(state => state.cart.products.length)
-    )
-    this.totalPrice$ = this.store.pipe(
-      map(state => state.cart.products.reduce((acc: number, item: Product) => acc + item.price, 0))
-    )
-    //this.items$.subscribe((state:any) => console.log(state))
-    //this.totalPrice$.subscribe((state:any) => console.log(state))
   }
 }

@@ -13,10 +13,7 @@ export class SidenavComponent implements OnInit {
   constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
-    this.isOpen$ = this.store.pipe(
-      map(state => state.navigation.isSidebarOpen)
-    )
-    this.isOpen$.subscribe((state:any) => console.log(state))
+
   }
 
 }

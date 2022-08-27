@@ -25,7 +25,6 @@ export class ShopComponent {
     this.service.getProducts().subscribe((products) => {
       this.store.dispatch(productActions.retrievedProductsList({ products }));
     });
-    this.service.getProducts().subscribe((products) => {console.log(products)});
   }
 
   onFilterSelected(key: string){
