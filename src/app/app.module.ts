@@ -31,6 +31,9 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { TotalPriceCartItemsPipe } from './pipes/total-price-cart-items.pipe';
 import { ArrLengthPipe } from './pipes/arr-length.pipe';
+import { IsNotNullOrZeroPipe } from './pipes/is-not-null-or-zero.pipe';
+import { SuccessComponent } from './components/success/success.component';
+import { StartComponent } from './components/start/start.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { ArrLengthPipe } from './pipes/arr-length.pipe';
     SidenavComponent,
     TotalPriceCartItemsPipe,
     ArrLengthPipe,
+    IsNotNullOrZeroPipe,
+    SuccessComponent,
+    StartComponent,
   ],
     imports: [
         BrowserModule,

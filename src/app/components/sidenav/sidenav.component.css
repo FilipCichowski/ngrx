@@ -1,11 +1,13 @@
 .wrapper {
-  background: rgb(5, 68, 104);
-  /*position: fixed;*/
-  /*top: 0;*/
-  /*right: 0;*/
-  width: 225px;
-  height: 100vh;
-  padding: 20px 0;
+  background: white;
+  width: 350px;
+  height: 100%;
+  padding: 20px;
   transition: all 0.5s ease;
   display: flex;
+  box-shadow: -11px 2px 24px -1px rgba(0,0,0,0.55);
+}
+
+app-cart-view {
+  width: 100%;
 }

@@ -8,13 +8,13 @@ import {map, Observable} from "rxjs";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isSidebarOpen$!: Observable<any>;
-
-  constructor(private store: Store<any>) {}
-
+  // isSidebarOpen$!: Observable<any>;
+  //
+  // constructor(private store: Store<any>) {}
+  //
   ngOnInit() {
-    this.isSidebarOpen$ = this.store.pipe(
-      map(state => state.navigation.isSidebarOpen)
-    )
+    // this.isSidebarOpen$ = this.store.pipe(
+    //   map(state => state.navigation.isSidebarOpen)
+    // )
   }
 }

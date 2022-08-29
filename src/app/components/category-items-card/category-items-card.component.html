@@ -1,4 +1,4 @@
-<div class="card-wrapper">
+<div class="card-wrapper" *ngIf="numberOfItems$ | async | isNotNullOrZero">
   <img [src]="item.imgUrl">
   <div class="right-wrapper">
     {{item.name}}

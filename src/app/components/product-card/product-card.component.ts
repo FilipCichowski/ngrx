@@ -17,7 +17,7 @@ export class ProductCardComponent {
 
   orderAmount: number = 0;
 
-  constructor(private store: Store<{ product: Product[] }>) {}
+  constructor(private store: Store<any>) {}
 
   onPlus(productId: number) {
     this.orderAmount++;
@@ -30,4 +30,6 @@ export class ProductCardComponent {
   onAddOrders() {
     this.store.dispatch(addProduct({ product: this.item, amount: this.orderAmount}));
   }
+
+
 }

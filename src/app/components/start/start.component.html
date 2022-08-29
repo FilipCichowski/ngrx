@@ -1,0 +1,8 @@
+<div class="app-wrapper">
+  <div class="content-wrapper">
+    <app-header></app-header>
+    <app-shop></app-shop>
+  </div>
+  <app-sidenav *ngIf="isSidebarOpen$ | async"></app-sidenav>
+</div>
+
