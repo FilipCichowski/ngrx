@@ -10,7 +10,7 @@ import {addProduct, deleteProduct} from '../../states/cart/cart.actions';
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss'],
+  styleUrls: ['./product-card.component.css'],
 })
 export class ProductCardComponent {
   @Input() item!: Product;

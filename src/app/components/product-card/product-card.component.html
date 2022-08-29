@@ -1,10 +1,11 @@
 <mat-card class="example-card"  fxFlexAlign="stretch">
   <mat-card-header>
-    <mat-card-title>{{item.name}}</mat-card-title>
-    <mat-card-subtitle>Cena: {{item.price}} PLN</mat-card-subtitle>
+    <mat-card-title>{{item.name}} <star-rating [starType]="'svg'" [rating]="item.stars"></star-rating></mat-card-title>
+    <mat-card-subtitle>Cena: {{item.price}}$ </mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="item.imgUrl" alt="Photo of food">
-  <mat-card-content>W magazynie: {{item.inStock - orderAmount}}</mat-card-content>
+  <mat-card-content>W magazynie: {{item.inStock - orderAmount}}
+    </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button color="primary" (click)="onMinus(item.id)" [disabled]="orderAmount === 0">-</button>
     <button mat-raised-button color="warn" (click)="onPlus(item.id)" [disabled]="item.inStock === orderAmount">+</button>

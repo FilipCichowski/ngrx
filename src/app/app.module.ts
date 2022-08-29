@@ -21,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 
+import { StarRatingModule } from 'angular-star-rating';
+
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CartViewComponent } from './components/cart-view/cart-view.component';
@@ -65,6 +67,7 @@ import { StartComponent } from './components/start/start.component';
             logOnly: environment.production,
         }),
         EffectsModule.forRoot([cartEffects]),
+        StarRatingModule.forRoot(),
         BrowserAnimationsModule,
         MatButtonModule,
         MatIconModule,

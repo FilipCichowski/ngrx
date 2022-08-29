@@ -11,7 +11,7 @@ import { productAppState } from '../../states/AppState';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.scss'],
+  styleUrls: ['./shop.component.css'],
 })
 export class ShopComponent {
   products$ = this.store.select(productSelectors.selectAllProducts);

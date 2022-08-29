@@ -5,10 +5,10 @@ import {toggleSideNav} from "../../states/navigation/navigation.actions";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  path: string = "assets/img/snail_logo.jpg"
+  path: string = "assets/images/snail_logo.jpg"
 
   onSidebarToggle(): void {
     this.store.dispatch(toggleSideNav());

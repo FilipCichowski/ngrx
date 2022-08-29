@@ -8,3 +8,8 @@ mat-card img{
   object-fit: cover; /*this makes the image in src fit to the size specified below*/
   height: 60%;
 }
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+}
