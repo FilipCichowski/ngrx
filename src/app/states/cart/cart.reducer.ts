@@ -18,12 +18,16 @@ export const cartReducer = createReducer(
     ...state,
     products: [...state.products, ...Array(amount).fill(product)]
   })),
-  on(cartActions.deleteProduct, (state: Cart, { product}) => ({
+  on(cartActions.deleteSingleProductWithId, (state: Cart, { product}) => ({
   ...state,
   products: [...state.products.filter((v, i, a) => i !== a.findIndex(i => i.id === product.id))]
   })),
   on(cartActions.clearCart, (state: Cart) => ({
     ...state,
     products: []
+  })),
+  on(cartActions.deleteAllProductsWithId, (state: Cart, { product }) => ({
+    ...state,
+    products: [...state.products.filter((p: Product) => p.id !== product.id)]
   })),
 );

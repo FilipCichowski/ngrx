@@ -1,11 +1,14 @@
-<div class="card-wrapper" *ngIf="numberOfItems$ | async | isNotNullOrZero">
-  <img [src]="item.imgUrl">
+<div class="card-wrapper" *ngIf="numberOfProducts$ | async | isGreaterThanOrEqual:0">
+  <img [src]="product.imgUrl">
   <div class="right-wrapper">
-    {{item.name}}
+    {{product.name}}
     <div class="amount-wrapper">
-      <button mat-raised-button (click)="onMinus()" color="primary">-</button>
-      <p class="amt">{{numberOfItems$ | async}}</p>
-      <button mat-raised-button (click)="onPlus()" [disabled]="(numberOfItems$ | async) === item.inStock" color="warn">+</button>
+      <button mat-raised-button (click)="onMinus()" color="primary" [disabled]="numberOfProducts$ | async | isSmallerOrEqualThan:1">-</button>
+      <p class="amt">{{numberOfProducts$ | async}}</p>
+      <button mat-raised-button (click)="onPlus()" [disabled]="(numberOfProducts$ | async) === product.inStock" color="warn">+</button>
+      <button mat-icon-button color="warn" aria-label="remove product from cart button" (click)="onRemoveFromCart()" >
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </div>
 </div>

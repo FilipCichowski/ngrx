@@ -36,6 +36,8 @@ import { ArrLengthPipe } from './pipes/arr-length.pipe';
 import { IsNotNullOrZeroPipe } from './pipes/is-not-null-or-zero.pipe';
 import { SuccessComponent } from './components/success/success.component';
 import { StartComponent } from './components/start/start.component';
+import { IsGreaterThanOrEqualPipe } from './pipes/is-greater-than-or-equal.pipe';
+import { IsSmallerOrEqualThanPipe } from './pipes/is-smaller-or-equal-than.pipe';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { StartComponent } from './components/start/start.component';
     IsNotNullOrZeroPipe,
     SuccessComponent,
     StartComponent,
+    IsGreaterThanOrEqualPipe,
+    IsSmallerOrEqualThanPipe,
   ],
     imports: [
         BrowserModule,

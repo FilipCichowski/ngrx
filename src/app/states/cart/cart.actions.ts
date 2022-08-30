@@ -6,10 +6,15 @@ export const addProduct = createAction(
   props<{ product: Product, amount: number }>()
 );
 
-export const deleteProduct = createAction(
+export const deleteSingleProductWithId = createAction(
   '[Cart] Delete Products ',
   props<{ product: Product }>()
 );
+
+export const deleteAllProductsWithId = createAction(
+  '[Cart] Delete All Products With ID',
+  props<{ product: Product }>()
+)
 
 export const clearCart = createAction(
   '[Cart] Clear Cart'

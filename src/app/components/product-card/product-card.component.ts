@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../utilities/Product';
 import * as productActions from '../../states/product/product.actions';
 import * as productSelectors from '../../states/product/product.selectors';
-import {addProduct, deleteProduct} from '../../states/cart/cart.actions';
+import {addProduct, deleteSingleProductWithId} from '../../states/cart/cart.actions';
 
 @Component({
   selector: 'app-product-card',

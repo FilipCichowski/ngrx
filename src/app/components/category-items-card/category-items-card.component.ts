@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {map, Observable, Subscription} from "rxjs";
 import {Product} from "../../utilities/Product";
-import {addProduct, deleteProduct} from "../../states/cart/cart.actions";
+import {addProduct, deleteAllProductsWithId, deleteSingleProductWithId} from "../../states/cart/cart.actions";
 
 @Component({
   selector: 'app-category-items-card',
@@ -12,34 +12,38 @@ import {addProduct, deleteProduct} from "../../states/cart/cart.actions";
 export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   @Input() id!: number;
 
-  numberOfItems$!: Observable<number>;
-  item$!: Observable<Product>;
-  item!: Product;
-  itemSubscription!: Subscription;
+  numberOfProducts$!: Observable<number>;
+  product$!: Observable<Product>;
+  product!: Product;
+  productSubscription!: Subscription;
 
   constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
-    this.numberOfItems$ = this.store.pipe(
+    this.numberOfProducts$ = this.store.pipe(
       map(state => state.cart.products.filter((p: Product) => p.id === this.id).length)
     )
-    this.item$ = this.store.pipe(
+    this.product$ = this.store.pipe(
       map(state => state.cart.products.filter((p: Product) => p.id === this.id)[0])
     )
-    this.itemSubscription =this.item$.subscribe(p => this.item = p)
+    this.productSubscription =this.product$.subscribe(p => this.product = p)
   }
 
   ngOnDestroy() {
-    this.itemSubscription.unsubscribe();
+    this.productSubscription.unsubscribe();
   }
 
   onMinus() {
-    console.log(this.item)
-    this.store.dispatch(deleteProduct({ product: this.item}));
+    console.log(this.product)
+    this.store.dispatch(deleteSingleProductWithId({ product: this.product}));
   }
 
   onPlus() {
-    this.store.dispatch(addProduct({ product: this.item, amount: 1}));
+    this.store.dispatch(addProduct({ product: this.product, amount: 1}));
+  }
+
+  onRemoveFromCart() {
+    this.store.dispatch(deleteAllProductsWithId({ product: this.product}))
   }
 
 }
