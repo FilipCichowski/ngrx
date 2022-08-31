@@ -1,16 +1,16 @@
 import { createSelector } from '@ngrx/store';
 import { productAppState } from '../AppState';
-import { ProductState } from './stock.reducer';
+import { StockState } from './stock.reducer';
 
-const selectProducts = (state: productAppState) => state.product;
+const selectProducts = (state: productAppState) => state.stock;
 
 export const selectAllProducts = createSelector(
   selectProducts,
-  (state: ProductState) => state.products
+  (state: StockState) => state.products
 );
 
 export const selectProductByCategories = (categories: string[]) =>
-  createSelector(selectProducts, (product: ProductState) => {
+  createSelector(selectProducts, (product: StockState) => {
     return product.products.filter((value) => {
       return categories.includes(value.category);
     });
@@ -18,5 +18,5 @@ export const selectProductByCategories = (categories: string[]) =>
 
 export const test = createSelector(
   selectProducts,
-  (product: ProductState) => product.products
+  (product: StockState) => product.products
 );

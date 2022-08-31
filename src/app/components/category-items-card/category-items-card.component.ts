@@ -2,7 +2,8 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {map, Observable, Subscription} from "rxjs";
 import {Product} from "../../utilities/Product";
-import {addProduct, deleteAllProductsWithId, deleteSingleProductWithId} from "../../states/cart/cart.actions";
+import {deleteAllProductsWithId} from "../../states/cart/cart.actions";
+import {addProducts, removeProduct} from "../../states/cart-stock.action";
 
 @Component({
   selector: 'app-category-items-card',
@@ -14,6 +15,7 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
 
   numberOfProducts$!: Observable<number>;
   product$!: Observable<Product>;
+  productAmount$!: Observable<number>;
   product!: Product;
   productSubscription!: Subscription;
 
@@ -26,6 +28,9 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
     this.product$ = this.store.pipe(
       map(state => state.cart.products.filter((p: Product) => p.id === this.id)[0])
     )
+    this.productAmount$ = this.store.pipe(
+      map(state => state.stock.products.find((product: Product) => product.id === this.id).inStock)
+    )
     this.productSubscription =this.product$.subscribe(p => this.product = p)
   }
 
@@ -34,12 +39,11 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   }
 
   onMinus() {
-    console.log(this.product)
-    this.store.dispatch(deleteSingleProductWithId({ product: this.product}));
+    this.store.dispatch(removeProduct({ product: this.product}));
   }
 
   onPlus() {
-    this.store.dispatch(addProduct({ product: this.product, amount: 1}));
+    this.store.dispatch(addProducts({ product: this.product, amount: 1}));
   }
 
   onRemoveFromCart() {

@@ -1,5 +1,9 @@
-import { ProductState } from './stock/stock.reducer';
+import { StockState } from './stock/stock.reducer';
+import {CartState} from "./cart/cart.reducer";
+import { NavigationState } from './navigation/navigation.reducer';
 
 export interface productAppState {
-  product: ProductState;
+  stock: StockState;
+  cart: CartState;
+  navigation: NavigationState;
 }

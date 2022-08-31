@@ -1,12 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import * as cartActions from './cart.actions';
+import * as commonActions from '../cart-stock.action';
 import {Product} from '../../utilities/Product';
 
-export interface Cart {
+export interface CartState {
   products: Product[];
 }
 
-export const cartInitialState: Cart = {
+export const cartInitialState: CartState = {
   products: [],
 };
 
@@ -14,19 +15,19 @@ export const cartInitialState: Cart = {
 
 export const cartReducer = createReducer(
   cartInitialState,
-  on(cartActions.addProduct, (state: Cart, { product, amount}) => ({
+  on(commonActions.addProducts, (state: CartState, { product, amount}) => ({
     ...state,
     products: [...state.products, ...Array(amount).fill(product)]
   })),
-  on(cartActions.deleteSingleProductWithId, (state: Cart, { product}) => ({
+  on(commonActions.removeProduct, (state: CartState, { product}) => ({
   ...state,
   products: [...state.products.filter((v, i, a) => i !== a.findIndex(i => i.id === product.id))]
   })),
-  on(cartActions.clearCart, (state: Cart) => ({
+  on(cartActions.clearCart, (state: CartState) => ({
     ...state,
     products: []
   })),
-  on(cartActions.deleteAllProductsWithId, (state: Cart, { product }) => ({
+  on(cartActions.deleteAllProductsWithId, (state: CartState, { product }) => ({
     ...state,
     products: [...state.products.filter((p: Product) => p.id !== product.id)]
   })),

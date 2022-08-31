@@ -64,7 +64,7 @@ import { IsSmallerOrEqualThanPipe } from './pipes/is-smaller-or-equal-than.pipe'
         AppRoutingModule,
         // StoreModule.forRoot({stock: stockReducer, cart: cartReducer}, {}),
         StoreModule.forRoot({}),
-        StoreModule.forFeature('product', stockReducer),
+        StoreModule.forFeature('stock', stockReducer),
         StoreModule.forFeature('cart', cartReducer),
         StoreModule.forFeature('navigation', navReducer),
         StoreDevtoolsModule.instrument({
