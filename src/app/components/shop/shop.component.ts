@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 
-import {ProductCategory, Product} from '../../utilities/Product';
+import {Product, ProductCategory} from '../../utilities/Product';
 import * as stockSelectors from '../../states/stock/stock.selectors';
-import { productAppState } from '../../states/AppState';
+import {productAppState} from '../../states/AppState';
 
 @Component({
   selector: 'app-shop',

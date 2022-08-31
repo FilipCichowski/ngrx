@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Store} from "@ngrx/store";
-import {map, Observable} from "rxjs";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',

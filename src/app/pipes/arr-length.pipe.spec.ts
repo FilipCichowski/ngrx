@@ -1,4 +1,4 @@
-import { ArrLengthPipe } from './arr-length.pipe';
+import {ArrLengthPipe} from './arr-length.pipe';
 
 describe('ArrLengthPipe', () => {
   const pipe = new ArrLengthPipe();

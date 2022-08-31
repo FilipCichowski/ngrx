@@ -1,5 +1,5 @@
-import { createAction, props } from '@ngrx/store';
-import {Product, ProductWithStock} from '../../utilities/Product';
+import {createAction, props} from '@ngrx/store';
+import {ProductWithStock} from '../../utilities/Product';
 
 export const retrievedProductsList = createAction(
   '[Shop Component] Retrieved Products List',

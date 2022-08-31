@@ -2,8 +2,8 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {map, Observable, Subscription} from "rxjs";
 import {Product} from "../../utilities/Product";
-import {clearCart, deleteAllProductsWithId} from "../../states/cart/cart.actions";
-import {addProducts, removeProduct} from "../../states/cart-stock.action";
+import {clearCart} from "../../states/cart/cart.actions";
+import {addProducts, removeProduct} from "../../states/cart-stock.actions";
 
 @Component({
   selector: 'app-category-items-card',

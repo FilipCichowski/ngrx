@@ -1,7 +1,7 @@
-import { createReducer, on } from '@ngrx/store';
+import {createReducer, on} from '@ngrx/store';
 import * as productActions from './stock.actions';
-import * as commonActions from '../cart-stock.action';
-import {Product, ProductCategory, ProductWithStock} from '../../utilities/Product';
+import * as commonActions from '../cart-stock.actions';
+import {ProductCategory, ProductWithStock} from '../../utilities/Product';
 
 export interface StockState {
   products: ProductWithStock[];

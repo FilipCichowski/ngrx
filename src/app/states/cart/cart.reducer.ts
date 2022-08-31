@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
+import {createReducer, on} from '@ngrx/store';
 import * as cartActions from './cart.actions';
-import * as commonActions from '../cart-stock.action';
+import * as commonActions from '../cart-stock.actions';
 import {Product} from '../../utilities/Product';
 
 export interface CartState {

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { StartComponent } from './components/start/start.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {StartComponent} from './components/start/start.component';
 import {SuccessComponent} from "./components/success/success.component";
 
 const routes: Routes = [

@@ -10,7 +10,7 @@
     <button mat-raised-button color="primary" (click)="onMinus(item.id)" [disabled]="orderAmount === 0">-</button>
     <button mat-raised-button color="warn" (click)="onPlus(item.id)" [disabled]="productAmount$ | async| isSmallerOrEqualThan:orderAmount">+</button>
     Ilość: {{orderAmount}}
-    <button mat-icon-button color="accent" (click)="onAddOrders()">
+    <button mat-icon-button color="accent" (click)="onAddOrders()" [disabled]="orderAmount <= 0">
       <mat-icon aria-label="Add to shopping cart">add_shopping_cart</mat-icon>
     </button>
   </mat-card-actions>

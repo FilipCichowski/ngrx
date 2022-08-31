@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import {createReducer, on} from '@ngrx/store';
 import {toggleSideNav} from "./navigation.actions";
 
 export interface NavigationState {

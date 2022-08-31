@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {Component, Input, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
 
 import {Product} from '../../utilities/Product';
-import {addProducts} from "../../states/cart-stock.action";
-import {filter, map, Observable} from "rxjs";
+import {addProducts} from "../../states/cart-stock.actions";
+import {map, Observable} from "rxjs";
 
 
 @Component({

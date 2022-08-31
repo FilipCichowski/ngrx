@@ -1,4 +1,4 @@
-import { TotalPriceCartItemsPipe } from './total-price-cart-items.pipe';
+import {TotalPriceCartItemsPipe} from './total-price-cart-items.pipe';
 
 describe('TotalPriceCartItemsPipe', () => {
   it('create an instance', () => {

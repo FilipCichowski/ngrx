@@ -1,5 +1,4 @@
-import { IsSmallerOrEqualThanPipe } from './is-smaller-or-equal-than.pipe';
-import {IsGreaterThanOrEqualPipe} from "./is-greater-than-or-equal.pipe";
+import {IsSmallerOrEqualThanPipe} from './is-smaller-or-equal-than.pipe';
 
 describe('IsSmallerOrEqualThanPipe', () => {
   const pipe = new IsSmallerOrEqualThanPipe();
