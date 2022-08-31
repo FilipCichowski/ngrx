@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
-import {appState} from "../../states/AppState";
+import {appState} from "../../utilities/AppState";
 import {isNavigationOpen} from "../../states/navigation/navigation.selector";
 
 @Component({

@@ -1,6 +1,6 @@
-import {StockState} from './stock/stock.reducer';
-import {CartState} from "./cart/cart.reducer";
-import {NavigationState} from './navigation/navigation.reducer';
+import {StockState} from '../states/stock/stock.reducer';
+import {CartState} from "../states/cart/cart.reducer";
+import {NavigationState} from '../states/navigation/navigation.reducer';
 
 export interface appState {
   stock: StockState;

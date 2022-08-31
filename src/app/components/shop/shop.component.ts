@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 
 import {Product, ProductCategory} from '../../utilities/Product';
 import * as stockSelectors from '../../states/stock/stock.selectors';
-import {appState} from '../../states/AppState';
+import {appState} from '../../utilities/AppState';
 
 @Component({
   selector: 'app-shop',

@@ -1,6 +1,6 @@
 import {createSelector} from '@ngrx/store';
 import {CartState} from "./cart.reducer";
-import {appState} from "../AppState";
+import {appState} from "../../utilities/AppState";
 import {Product} from "../../utilities/Product";
 
 const selectProducts = (state: appState) => state.cart;
@@ -28,4 +28,9 @@ export const getNumberOfProductsWithIdInCart = (id: number) => createSelector(
 export const getProductById = (id: number) => createSelector(
   selectProducts,
   state => state.products.find((p: Product) => p.id === id)
+)
+
+export const getTotalPriceForOrder = createSelector(
+  selectProducts,
+  state => state.products.reduce((acc: number, product: Product) => acc + product.price, 0)
 )

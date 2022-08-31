@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {Product} from '../../utilities/Product';
 import {addProducts} from "../../states/cart-stock.actions";
 import {Observable} from "rxjs";
-import {appState} from "../../states/AppState";
+import {appState} from "../../utilities/AppState";
 import {getNumberOfProductsWithIdInStock} from "../../states/stock/stock.selectors";
 
 

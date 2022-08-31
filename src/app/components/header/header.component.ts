@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {toggleSideNav} from "../../states/navigation/navigation.actions";
-import {appState} from "../../states/AppState";
+import {appState} from "../../utilities/AppState";
 
 @Component({
   selector: 'app-header',

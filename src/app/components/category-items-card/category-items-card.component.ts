@@ -6,7 +6,7 @@ import {deleteProductFromCart} from "../../states/cart/cart.actions";
 import {addProducts, removeProduct} from "../../states/cart-stock.actions";
 import {getNumberOfProductsWithIdInCart, getProductById} from "../../states/cart/cart.selectors";
 import {getNumberOfProductsWithIdInStock} from "../../states/stock/stock.selectors";
-import {appState} from "../../states/AppState";
+import {appState} from "../../utilities/AppState";
 
 @Component({
   selector: 'app-category-items-card',

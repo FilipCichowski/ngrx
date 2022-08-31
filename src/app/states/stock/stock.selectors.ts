@@ -1,5 +1,5 @@
 import {createSelector} from '@ngrx/store';
-import {appState} from '../AppState';
+import {appState} from '../../utilities/AppState';
 import {StockState} from './stock.reducer';
 
 const selectProducts = (state: appState) => state.stock;
