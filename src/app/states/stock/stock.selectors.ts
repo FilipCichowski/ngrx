@@ -16,7 +16,4 @@ export const selectProductByCategories = (categories: string[]) =>
     });
   });
 
-export const test = createSelector(
-  selectProducts,
-  (product: StockState) => product.products
-);
+

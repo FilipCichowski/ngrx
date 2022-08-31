@@ -23,11 +23,11 @@ export const cartReducer = createReducer(
   ...state,
   products: [...state.products.filter((v, i, a) => i !== a.findIndex(i => i.id === product.id))]
   })),
-  on(cartActions.clearCart, (state: CartState) => ({
+  on(cartActions.clearCart, cartActions.placeOrder, (state: CartState) => ({
     ...state,
     products: []
   })),
-  on(cartActions.deleteAllProductsWithId, (state: CartState, { product }) => ({
+  on(cartActions.deleteProductFromCart, (state: CartState, { product }) => ({
     ...state,
     products: [...state.products.filter((p: Product) => p.id !== product.id)]
   })),

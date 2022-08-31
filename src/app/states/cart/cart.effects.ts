@@ -1,31 +1,48 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects"
 import {Injectable} from "@angular/core";
-import {addProduct, deleteSingleProductWithId} from "./cart.actions";
+import * as cartActions from "./cart.actions";
 import {tap} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class cartEffects {
-  addEffect$ = createEffect(() => {
+  placeOrderEffect$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(addProduct),
+      ofType(cartActions.placeOrder),
       tap(action => {
-          console.log(action.product);
-          this.snackBar.open(`Dodano ${action.amount} produkt(y/ów) do koszyka`);
+          this.openSnack('Złożono zamówienie!');
+          this.router.navigate(['/success']);
         }
       )
     );
   }, {dispatch: false})
-  deleteEffect$ = createEffect(() => {
+  claerCartEffect$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(deleteSingleProductWithId),
+      ofType(cartActions.clearCart),
       tap(action => {
-          this.snackBar.open(`Usunięto produkt z koszyka`);
+          this.openSnack('Wyczyszczono koszyk');
+        }
+      )
+    );
+  }, {dispatch: false})
+  deleteProductEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(cartActions.deleteProductFromCart),
+      tap(action => {
+          this.openSnack('Produkt został usunięty z koszyka');
         }
       )
     );
   }, {dispatch: false})
 
-  constructor(private actions$: Actions, public snackBar: MatSnackBar) {
+  openSnack(message: string):void {
+    this.snackBar.open(message, 'OK', {
+      verticalPosition: 'top',
+      panelClass: ['main-snack']
+    });
+  }
+
+  constructor(private actions$: Actions, public snackBar: MatSnackBar, private router: Router) {
   }
 }

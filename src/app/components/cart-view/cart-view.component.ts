@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Product, ProductCategory} from "../../utilities/Product";
 import {map, Observable} from "rxjs";
-import {clearCart} from "../../states/cart/cart.actions";
+import {clearCart, placeOrder} from "../../states/cart/cart.actions";
 import {Router} from "@angular/router";
+import {getProductsCategories, getStockProducts} from "../../states/cart/cart.selectors";
+
 
 @Component({
   selector: 'app-cart-view',
@@ -11,19 +13,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./cart-view.component.css']
 })
 export class CartViewComponent implements OnInit {
-  items$!: Observable<Product[]>;
-  categories$!: Observable<any>;
-  categories = Object.keys(ProductCategory);
+  stockProducts$!: Observable<Product[]>;
+  productsCategories$!: Observable<any>;
+  allCategories = Object.keys(ProductCategory);
 
   constructor(private store: Store<any>, private router: Router) { }
 
   ngOnInit(): void {
-    this.items$ = this.store.pipe(
-      map(state => state.cart.products)
-    )
-    this.categories$ = this.store.pipe(
-      map(state => [...new Set(state.cart.products.map((product: Product) => product.category))])
-    )
+    this.stockProducts$ = this.store.select(getStockProducts)
+    this.productsCategories$ = this.store.select(getProductsCategories);
   }
 
   onClearCart(): void {
@@ -31,8 +29,7 @@ export class CartViewComponent implements OnInit {
   }
 
   onPlaceOrder(): void {
-    this.router.navigate(['/success']);
-    this.onClearCart();
+    this.store.dispatch(placeOrder());
   }
 
 }

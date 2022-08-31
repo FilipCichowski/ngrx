@@ -2,7 +2,6 @@ import {Actions, createEffect, ofType} from "@ngrx/effects"
 import {Injectable} from "@angular/core";
 import {tap} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {addProduct, deleteSingleProductWithId} from "./cart/cart.actions";
 import * as commonActions from "./cart-stock.actions";
 
 @Injectable()

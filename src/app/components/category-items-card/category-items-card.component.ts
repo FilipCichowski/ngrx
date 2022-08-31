@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {map, Observable, Subscription} from "rxjs";
 import {Product} from "../../utilities/Product";
-import {clearCart} from "../../states/cart/cart.actions";
+import {clearCart, deleteProductFromCart, placeOrder} from "../../states/cart/cart.actions";
 import {addProducts, removeProduct} from "../../states/cart-stock.actions";
 
 @Component({
@@ -50,7 +50,6 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   }
 
   onRemoveFromCart() {
-    this.store.dispatch(removeProduct({ product: this.product, amount: this.productInStock}));
-    this.store.dispatch(clearCart());
+    this.store.dispatch(deleteProductFromCart({ product: this.product}));
   }
 }
