@@ -1,8 +1,7 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects"
 import {Injectable} from "@angular/core";
 import {addProduct, deleteSingleProductWithId} from "./cart.actions";
-import {flatMap, map, switchMap, tap} from "rxjs";
-import {ToastServiceService} from "../../services/toast-service.service";
+import {tap} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable()
@@ -27,6 +26,6 @@ export class cartEffects {
     );
   }, {dispatch: false})
 
-  constructor(private actions$: Actions, private toastService: ToastServiceService, public snackBar: MatSnackBar) {
+  constructor(private actions$: Actions, public snackBar: MatSnackBar) {
   }
 }
