@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 
 import {Product, ProductCategory} from '../../utilities/Product';
 import * as stockSelectors from '../../states/stock/stock.selectors';
-import {productAppState} from '../../states/AppState';
+import {appState} from '../../states/AppState';
 
 @Component({
   selector: 'app-shop',
@@ -12,12 +12,12 @@ import {productAppState} from '../../states/AppState';
   styleUrls: ['./shop.component.css'],
 })
 export class ShopComponent {
-  products$: Observable<Product[]> = this.store.select(stockSelectors.selectAllProducts);
+  products$: Observable<Product[]> = this.store.select(stockSelectors.getAllProducts);
   categories = ProductCategory;
   filters: string[] = [];
 
   constructor(
-    private store: Store<productAppState>,
+    private store: Store<appState>,
   ) {}
 
   onFilterSelected(key: string){
@@ -32,11 +32,10 @@ export class ShopComponent {
     } else {
       this.filters.push(key);
     }
-
     this.filters.length === 0
-      ? (this.products$ = this.store.select(stockSelectors.selectAllProducts))
+      ? (this.products$ = this.store.select(stockSelectors.getAllProducts))
       : (this.products$ = this.store.select(
-          stockSelectors.selectProductByCategories(this.filters)
+          stockSelectors.getProductsWithCategories(this.filters)
         ));
   }
 }

@@ -1,9 +1,12 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {map, Observable, Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {Product} from "../../utilities/Product";
-import {clearCart, deleteProductFromCart, placeOrder} from "../../states/cart/cart.actions";
+import {deleteProductFromCart} from "../../states/cart/cart.actions";
 import {addProducts, removeProduct} from "../../states/cart-stock.actions";
+import {getNumberOfProductsWithIdInCart, getProductById} from "../../states/cart/cart.selectors";
+import {getNumberOfProductsWithIdInStock} from "../../states/stock/stock.selectors";
+import {appState} from "../../states/AppState";
 
 @Component({
   selector: 'app-category-items-card',
@@ -13,27 +16,18 @@ import {addProducts, removeProduct} from "../../states/cart-stock.actions";
 export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   @Input() id!: number;
 
-  numberOfProducts$!: Observable<number>;
-  product$!: Observable<Product>;
+  productsInCart$!: Observable<number>;
+  product$!: Observable<Product | undefined>;
   productInStock$!: Observable<number>;
-  productInStock!: number;
-  product!: Product;
+  product!: Product | undefined;
   productSubscription!: Subscription;
-  private amountSubscription!: Subscription;
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<appState>) { }
 
   ngOnInit(): void {
-    this.numberOfProducts$ = this.store.pipe(
-      map(state => state.cart.products.filter((p: Product) => p.id === this.id).length)
-    )
-    this.product$ = this.store.pipe(
-      map(state => state.cart.products.filter((p: Product) => p.id === this.id)[0])
-    )
-    this.productInStock$ = this.store.pipe(
-      map(state => state.stock.products.find((product: Product) => product.id === this.id).inStock)
-    )
-    this.amountSubscription = this.numberOfProducts$.subscribe(amount => this.productInStock = amount);
+    this.productsInCart$ = this.store.select(getNumberOfProductsWithIdInCart(this.id));
+    this.product$ = this.store.select(getProductById(this.id));
+    this.productInStock$ = this.store.select(getNumberOfProductsWithIdInStock(this.id));
     this.productSubscription =this.product$.subscribe(p => this.product = p)
   }
 
@@ -42,14 +36,20 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   }
 
   onMinus() {
-    this.store.dispatch(removeProduct({ product: this.product, amount: 1}));
+    if (this.product !== undefined) {
+      this.store.dispatch(removeProduct({ product: this.product, amount: 1}));
+    }
   }
 
   onPlus() {
-    this.store.dispatch(addProducts({ product: this.product, amount: 1}));
+    if (this.product !== undefined) {
+      this.store.dispatch(addProducts({ product: this.product, amount: 1}));
+    }
   }
 
   onRemoveFromCart() {
-    this.store.dispatch(deleteProductFromCart({ product: this.product}));
+    if (this.product !== undefined) {
+      this.store.dispatch(deleteProductFromCart({ product: this.product}));
+    }
   }
 }

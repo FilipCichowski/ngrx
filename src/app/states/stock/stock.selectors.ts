@@ -1,19 +1,26 @@
 import {createSelector} from '@ngrx/store';
-import {productAppState} from '../AppState';
+import {appState} from '../AppState';
 import {StockState} from './stock.reducer';
 
-const selectProducts = (state: productAppState) => state.stock;
+const selectProducts = (state: appState) => state.stock;
 
-export const selectAllProducts = createSelector(
+export const getAllProducts = createSelector(
   selectProducts,
   (state: StockState) => state.products.map(({inStock, ...item}) => item)
 );
 
-export const selectProductByCategories = (categories: string[]) =>
+export const getProductsWithCategories = (categories: string[]) =>
   createSelector(selectProducts, (product: StockState) => {
     return product.products.filter((value) => {
       return categories.includes(value.category);
     });
   });
+
+export const getNumberOfProductsWithIdInStock = (id: number) => createSelector(
+  selectProducts,
+  (state: StockState) => state.products.find((product) => product.id === id)?.inStock || 0
+)
+
+
 
 

@@ -13,6 +13,5 @@ export class ProductSelectorComponent  {
 
   onFilterSelected(key: string): void {
     this.selectedFilter.emit(key)
-    console.log(key)
   }
 }

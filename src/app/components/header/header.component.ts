@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {toggleSideNav} from "../../states/navigation/navigation.actions";
+import {appState} from "../../states/AppState";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
     this.store.dispatch(toggleSideNav());
   }
 
-  constructor(private store: Store) { }
+  constructor(private store: Store<appState>) { }
 
   ngOnInit(): void {
   }

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {Product, ProductCategory} from "../../utilities/Product";
-import {map, Observable} from "rxjs";
+import {Product} from "../../utilities/Product";
+import {Observable} from "rxjs";
 import {clearCart, placeOrder} from "../../states/cart/cart.actions";
-import {Router} from "@angular/router";
 import {getProductsCategories, getStockProducts} from "../../states/cart/cart.selectors";
+import {appState} from "../../states/AppState";
 
 
 @Component({
@@ -14,10 +14,9 @@ import {getProductsCategories, getStockProducts} from "../../states/cart/cart.se
 })
 export class CartViewComponent implements OnInit {
   stockProducts$!: Observable<Product[]>;
-  productsCategories$!: Observable<any>;
-  allCategories = Object.keys(ProductCategory);
+  productsCategories$!: Observable<string[]>;
 
-  constructor(private store: Store<any>, private router: Router) { }
+  constructor(private store: Store<appState>) { }
 
   ngOnInit(): void {
     this.stockProducts$ = this.store.select(getStockProducts)

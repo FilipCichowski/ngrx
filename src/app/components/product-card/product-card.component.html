@@ -4,11 +4,11 @@
     <mat-card-subtitle>Cena: {{item.price | currency:'USD'}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="item.imgUrl" alt="Photo of food">
-  <mat-card-content>W magazynie: {{productAmount$ | async}}
+  <mat-card-content>W magazynie: {{productsInStock$ | async}}
     </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button color="primary" (click)="onMinus(item.id)" [disabled]="orderAmount === 0">-</button>
-    <button mat-raised-button color="warn" (click)="onPlus(item.id)" [disabled]="productAmount$ | async| isSmallerOrEqualThan:orderAmount">+</button>
+    <button mat-raised-button color="warn" (click)="onPlus(item.id)" [disabled]="productsInStock$ | async| isSmallerOrEqualThan:orderAmount">+</button>
     Ilość: {{orderAmount}}
     <button mat-icon-button color="accent" (click)="onAddOrders()" [disabled]="orderAmount <= 0">
       <mat-icon aria-label="Add to shopping cart">add_shopping_cart</mat-icon>

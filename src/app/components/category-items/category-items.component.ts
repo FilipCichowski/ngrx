@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../utilities/Product";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
+import {appState} from "../../states/AppState";
+import {getProductsIdByCategory} from "../../states/cart/cart.selectors";
 
 @Component({
   selector: 'app-category-items',
@@ -11,14 +12,12 @@ import {Store} from "@ngrx/store";
 export class CategoryItemsComponent implements OnInit {
   @Input() category!: string;
 
-  productId$!: Observable<any>;
+  productsId$!: Observable<number[]>;
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<appState>) { }
 
   ngOnInit(): void {
-    this.productId$ = this.store.pipe(
-      map(state => [...new Set(state.cart.products.filter((item: Product) => item.category === this.category).map((item: Product) => item.id))])
-    )
+    this.productsId$ = this.store.select(getProductsIdByCategory(this.category));
   }
 }
 

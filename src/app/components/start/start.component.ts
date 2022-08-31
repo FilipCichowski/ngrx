@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
+import {appState} from "../../states/AppState";
+import {isNavigationOpen} from "../../states/navigation/navigation.selector";
 
 @Component({
   selector: 'app-start',
@@ -8,13 +10,11 @@ import {Store} from "@ngrx/store";
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
-  isSidebarOpen$!: Observable<any>;
+  isSidebarOpen$!: Observable<boolean>;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<appState>) {}
 
   ngOnInit() {
-    this.isSidebarOpen$ = this.store.pipe(
-      map(state => state.navigation.isSidebarOpen)
-    )
+    this.isSidebarOpen$ = this.store.select(isNavigationOpen);
   }
 }

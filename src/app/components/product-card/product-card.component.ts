@@ -3,7 +3,9 @@ import {Store} from '@ngrx/store';
 
 import {Product} from '../../utilities/Product';
 import {addProducts} from "../../states/cart-stock.actions";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
+import {appState} from "../../states/AppState";
+import {getNumberOfProductsWithIdInStock} from "../../states/stock/stock.selectors";
 
 
 @Component({
@@ -13,11 +15,11 @@ import {map, Observable} from "rxjs";
 })
 export class ProductCardComponent implements OnInit {
   @Input() item!: Product;
-  productAmount$!: Observable<number>;
 
+  productsInStock$!: Observable<number>;
   orderAmount: number = 0;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<appState>) {}
 
   onPlus(productId: number) {
     this.orderAmount++;
@@ -28,14 +30,11 @@ export class ProductCardComponent implements OnInit {
   }
 
   onAddOrders() {
-    console.table(this.item)
     this.store.dispatch(addProducts({ product: this.item, amount: this.orderAmount}));
   }
 
   ngOnInit() {
-    this.productAmount$ = this.store.pipe(
-      map(state => state.stock.products.find((product: Product) => product.id === this.item.id).inStock)
-    )
+    this.productsInStock$ = this.store.select(getNumberOfProductsWithIdInStock(this.item.id))
   }
 
 }
