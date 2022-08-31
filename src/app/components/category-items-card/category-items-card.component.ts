@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {map, Observable, Subscription} from "rxjs";
 import {Product} from "../../utilities/Product";
-import {deleteAllProductsWithId} from "../../states/cart/cart.actions";
+import {clearCart, deleteAllProductsWithId} from "../../states/cart/cart.actions";
 import {addProducts, removeProduct} from "../../states/cart-stock.action";
 
 @Component({
@@ -15,9 +15,11 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
 
   numberOfProducts$!: Observable<number>;
   product$!: Observable<Product>;
-  productAmount$!: Observable<number>;
+  productInStock$!: Observable<number>;
+  productInStock!: number;
   product!: Product;
   productSubscription!: Subscription;
+  private amountSubscription!: Subscription;
 
   constructor(private store: Store<any>) { }
 
@@ -28,9 +30,10 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
     this.product$ = this.store.pipe(
       map(state => state.cart.products.filter((p: Product) => p.id === this.id)[0])
     )
-    this.productAmount$ = this.store.pipe(
+    this.productInStock$ = this.store.pipe(
       map(state => state.stock.products.find((product: Product) => product.id === this.id).inStock)
     )
+    this.amountSubscription = this.numberOfProducts$.subscribe(amount => this.productInStock = amount);
     this.productSubscription =this.product$.subscribe(p => this.product = p)
   }
 
@@ -39,7 +42,7 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   }
 
   onMinus() {
-    this.store.dispatch(removeProduct({ product: this.product}));
+    this.store.dispatch(removeProduct({ product: this.product, amount: 1}));
   }
 
   onPlus() {
@@ -47,6 +50,7 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   }
 
   onRemoveFromCart() {
-    this.store.dispatch(deleteAllProductsWithId({ product: this.product}))
+    this.store.dispatch(removeProduct({ product: this.product, amount: this.productInStock}));
+    this.store.dispatch(clearCart());
   }
 }

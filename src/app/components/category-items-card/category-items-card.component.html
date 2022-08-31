@@ -4,8 +4,8 @@
     {{product.name}}
     <div class="amount-wrapper">
       <button mat-raised-button (click)="onMinus()" color="primary" [disabled]="numberOfProducts$ | async | isSmallerOrEqualThan:1">-</button>
-      <p class="amt">{{numberOfProducts$ | async}}</p>
-      <button mat-raised-button (click)="onPlus()" [disabled]="productAmount$ | async | isSmallerOrEqualThan:0" color="warn">+</button>
+      <p class="amt">{{productInStock}}</p>
+      <button mat-raised-button (click)="onPlus()" [disabled]="productInStock$ | async | isSmallerOrEqualThan:0" color="warn">+</button>
       <button mat-icon-button color="warn" aria-label="remove product from cart button" (click)="onRemoveFromCart()" >
         <mat-icon>delete</mat-icon>
       </button>
