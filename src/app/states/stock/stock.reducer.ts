@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import * as productActions from './product.actions';
+import * as productActions from './stock.actions';
 import { Product } from '../../utilities/Product';
 
 export interface ProductState {
@@ -10,7 +10,7 @@ const productInitialState: ProductState = {
   products: [],
 };
 
-export const productReducer = createReducer(
+export const stockReducer = createReducer(
   productInitialState,
   on(
     productActions.retrievedProductsList,

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { productReducer } from './states/product/product.reducer';
+import { stockReducer } from './states/stock/stock.reducer';
 import { cartReducer } from './states/cart/cart.reducer';
 import {navReducer} from "./states/navigation/navigation.reducer";
 import { StoreModule } from '@ngrx/store';
@@ -23,13 +23,14 @@ import { MatIconModule } from "@angular/material/icon";
 
 import { StarRatingModule } from 'angular-star-rating';
 
+import { ShopComponent } from './components/shop/shop.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CartViewComponent } from './components/cart-view/cart-view.component';
 import { CategoryItemsComponent } from './components/category-items/category-items.component';
 import { CategoryItemsCardComponent } from './components/category-items-card/category-items-card.component';
 import { ProductSelectorComponent } from './components/product-selector/product-selector.component';
-import { ShopComponent } from './components/shop/shop.component';
+
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { TotalPriceCartItemsPipe } from './pipes/total-price-cart-items.pipe';
 import { ArrLengthPipe } from './pipes/arr-length.pipe';
@@ -61,9 +62,9 @@ import { IsSmallerOrEqualThanPipe } from './pipes/is-smaller-or-equal-than.pipe'
     imports: [
         BrowserModule,
         AppRoutingModule,
-        // StoreModule.forRoot({product: productReducer, cart: cartReducer}, {}),
+        // StoreModule.forRoot({stock: stockReducer, cart: cartReducer}, {}),
         StoreModule.forRoot({}),
-        StoreModule.forFeature('product', productReducer),
+        StoreModule.forFeature('product', stockReducer),
         StoreModule.forFeature('cart', cartReducer),
         StoreModule.forFeature('navigation', navReducer),
         StoreDevtoolsModule.instrument({

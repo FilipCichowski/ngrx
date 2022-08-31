@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { ProductCategory } from '../../utilities/Product';
-import * as productActions from '../../states/product/product.actions';
-import * as productSelectors from '../../states/product/product.selectors';
+import * as productActions from '../../states/stock/stock.actions';
+import * as productSelectors from '../../states/stock/stock.selectors';
 import { ProductsService } from '../../services/products.service';
 import { productAppState } from '../../states/AppState';
 

@@ -1,4 +1,4 @@
-import { ProductState } from './product/product.reducer';
+import { ProductState } from './stock/stock.reducer';
 
 export interface productAppState {
   product: ProductState;
