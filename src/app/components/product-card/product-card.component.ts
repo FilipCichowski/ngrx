@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { Product } from '../../utilities/Product';
+import {Product} from '../../utilities/Product';
 import {addProducts} from "../../states/cart-stock.action";
 import {filter, map, Observable} from "rxjs";
 
@@ -13,7 +13,7 @@ import {filter, map, Observable} from "rxjs";
 })
 export class ProductCardComponent implements OnInit {
   @Input() item!: Product;
-  productAmount$!: Observable<Product>;
+  productAmount$!: Observable<number>;
 
   orderAmount: number = 0;
 
@@ -28,6 +28,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   onAddOrders() {
+    console.table(this.item)
     this.store.dispatch(addProducts({ product: this.item, amount: this.orderAmount}));
   }
 

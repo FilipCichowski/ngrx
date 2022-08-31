@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ProductCategory } from '../../utilities/Product';
-import * as productActions from '../../states/stock/stock.actions';
-import * as productSelectors from '../../states/stock/stock.selectors';
-import { ProductsService } from '../../services/products.service';
+import {ProductCategory, Product} from '../../utilities/Product';
+import * as stockSelectors from '../../states/stock/stock.selectors';
 import { productAppState } from '../../states/AppState';
 
 @Component({
@@ -14,18 +12,13 @@ import { productAppState } from '../../states/AppState';
   styleUrls: ['./shop.component.css'],
 })
 export class ShopComponent {
-  products$ = this.store.select(productSelectors.selectAllProducts);
+  products$: Observable<Product[]> = this.store.select(stockSelectors.selectAllProducts);
   categories = ProductCategory;
   filters: string[] = [];
 
   constructor(
     private store: Store<productAppState>,
-    private service: ProductsService
-  ) {
-    this.service.getProducts().subscribe((products) => {
-      this.store.dispatch(productActions.retrievedProductsList({ products }));
-    });
-  }
+  ) {}
 
   onFilterSelected(key: string){
     this.showProduct(key);
@@ -41,9 +34,9 @@ export class ShopComponent {
     }
 
     this.filters.length === 0
-      ? (this.products$ = this.store.select(productSelectors.selectAllProducts))
+      ? (this.products$ = this.store.select(stockSelectors.selectAllProducts))
       : (this.products$ = this.store.select(
-          productSelectors.selectProductByCategories(this.filters)
+          stockSelectors.selectProductByCategories(this.filters)
         ));
   }
 }

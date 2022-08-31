@@ -6,7 +6,7 @@ const selectProducts = (state: productAppState) => state.stock;
 
 export const selectAllProducts = createSelector(
   selectProducts,
-  (state: StockState) => state.products
+  (state: StockState) => state.products.map(({inStock, ...item}) => item)
 );
 
 export const selectProductByCategories = (categories: string[]) =>

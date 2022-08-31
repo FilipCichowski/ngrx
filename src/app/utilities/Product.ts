@@ -1,8 +1,11 @@
+export interface ProductWithStock extends Product{
+  inStock: number;
+}
+
 export interface Product {
-  id: number;
   name: string;
   stars: number;
-  inStock: number;
+  id: number;
   imgUrl: string;
   price: number;
   category: ProductCategory;

@@ -49,5 +49,4 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
   onRemoveFromCart() {
     this.store.dispatch(deleteAllProductsWithId({ product: this.product}))
   }
-
 }

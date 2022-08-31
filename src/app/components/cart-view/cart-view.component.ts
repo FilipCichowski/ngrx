@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from "@ngrx/store";
-import {ProductCategory} from "../../utilities/Product";
+import {ProductCategory, Product} from "../../utilities/Product";
 import {map, Observable} from "rxjs";
-import {Product} from "../../utilities/Product";
 import {clearCart} from "../../states/cart/cart.actions";
 import {Router} from "@angular/router";
 

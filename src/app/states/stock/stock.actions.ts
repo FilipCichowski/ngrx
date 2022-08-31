@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { Product } from '../../utilities/Product';
+import {Product, ProductWithStock} from '../../utilities/Product';
 
 export const retrievedProductsList = createAction(
   '[Shop Component] Retrieved Products List',
-  props<{ products: Product[] }>()
+  props<{ products: ProductWithStock[] }>()
 );
 
 export const incrementProductInStock = createAction(
