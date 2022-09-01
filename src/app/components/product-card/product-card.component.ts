@@ -21,11 +21,11 @@ export class ProductCardComponent implements OnInit {
 
   constructor(private store: Store<appState>) {}
 
-  onPlus(productId: number) {
+  onPlus() {
     this.orderAmount++;
   }
 
-  onMinus(productId: number) {
+  onMinus() {
     this.orderAmount--;
   }
 
