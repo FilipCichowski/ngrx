@@ -19,7 +19,7 @@ export class cartStockEffects {
     return this.actions$.pipe(
       ofType(commonActions.removeProduct),
       tap(action => {
-          this.openSnack(`Usunięto ${action.amount} produkt(y/ów) z koszyka`);
+          this.openSnack(`Usunięto produkt z koszyka`);
         }
       )
     );

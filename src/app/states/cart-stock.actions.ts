@@ -8,5 +8,5 @@ export const addProducts = createAction(
 
 export const removeProduct = createAction(
   '[Cart-Stock] Remove Product',
-  props<{ product: Product, amount: number}>()
+  props<{ product: Product}>()
 );

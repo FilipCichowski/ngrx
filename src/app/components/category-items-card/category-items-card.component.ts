@@ -37,7 +37,7 @@ export class CategoryItemsCardComponent implements OnInit, OnDestroy {
 
   onMinus() {
     if (this.product !== undefined) {
-      this.store.dispatch(removeProduct({ product: this.product, amount: 1}));
+      this.store.dispatch(removeProduct({ product: this.product}));
     }
   }
 

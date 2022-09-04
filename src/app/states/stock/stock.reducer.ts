@@ -104,11 +104,11 @@ export const stockReducer = createReducer(
   ),
   on(
     commonActions.removeProduct,
-    (state: StockState, { product, amount }) => {
+    (state: StockState, { product}) => {
       let modifiedState = JSON.parse(JSON.stringify([...state.products]));
       modifiedState.map((data: any) => {
         if (data.id === product.id) {
-          data.inStock += amount;
+          data.inStock++
         }
       });
 
