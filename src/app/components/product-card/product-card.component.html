@@ -9,7 +9,7 @@
   <mat-card-actions>
     <button mat-raised-button color="primary" (click)="onMinus()" [disabled]="orderAmount === 0" data-testid="increase-order-amount-product-card">-</button>
     <button mat-raised-button color="warn" (click)="onPlus()" [disabled]="productsInStock$ | async| isSmallerOrEqualThan:orderAmount">+</button>
-    <p data-testid="count-product-card">Ilość: {{orderAmount}}</p>
+      Ilość: {{orderAmount}}
     <button mat-icon-button color="accent" (click)="onAddOrders()" [disabled]="orderAmount <= 0">
       <mat-icon aria-label="Add to shopping cart">add_shopping_cart</mat-icon>
     </button>

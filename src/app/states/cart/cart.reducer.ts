@@ -11,8 +11,6 @@ export const cartInitialState: CartState = {
   products: [],
 };
 
-// export const cartInitialState: Product[] = []
-
 export const cartReducer = createReducer(
   cartInitialState,
   on(commonActions.addProducts, (state: CartState, { product, amount}) => ({
